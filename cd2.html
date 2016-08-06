@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body ng-app="myApp">
+<p> Custom directives for a pop up to restrict the use of that directive as a
+directive, comment, element, attribute.</p>
+
+
+<test1-directive></test1-directive>
+<div test-directive></div>
+<div class="test2-directive"></div>
+<!-- directive: testt-directive -->
+<script>
+var app = angular.module("myApp", []);
+app.directive("test1Directive", function() {
+    return {
+           restrict : "E",
+        template : '<button onclick="myFunction()">Show</button>'
+    };
+});
+app.directive("testDirective", function() {
+    return {
+           restrict : "A",
+        template : '</br> <button onclick="myFunction()">Show</button>'
+    };
+});
+app.directive("test2Directive", function() {
+    return {
+           restrict : "C",
+        template : '</br> <button onclick="myFunction()">Show</button>'
+    };
+});
+
+function myFunction() {
+   alert('Welcome'); 
+}
+app.directive("testtDirective", function() {
+    return {
+        restrict : "M",
+        replace : true,
+        template : '<p> <button onclick="myFunction()">Show</button> </p>'
+    };
+});
+
+</script>
+
+</body>
+</html>
+
